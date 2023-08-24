@@ -1,4 +1,5 @@
 import { component$ } from "@builder.io/qwik";
+import { CreateRoom } from "./create-room";
 
 export const Hero = component$(() => (
   <div class="hero bg-base-100 py-10">
