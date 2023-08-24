@@ -1,13 +1,14 @@
 import { type QRL, component$, useSignal } from "@builder.io/qwik";
+import { useRoom } from "~/routes/[roomId]";
 
 type Props = {
-  room: string;
   users: string[];
   callUser$: QRL<(user: string) => void>;
 };
 export const RemoteUsers = component$((props: Props) => {
-  const { room, users, callUser$ } = props;
+  const { users, callUser$ } = props;
   const dialogRef = useSignal<HTMLDialogElement | undefined>();
+  const roomSig = useRoom();
 
   return (
     <>
@@ -33,11 +34,11 @@ export const RemoteUsers = component$((props: Props) => {
           </div>
           <h3 class="font-bold text-lg mb-4">Remote Users</h3>
           <ul class="flex flex-col divide-y">
-            {users.length && (
+            {!users.length && (
               <div class="text-center flex flex-col gap-2 min-h-[200px] justify-center">
                 <h6 class="text-xl">No Users</h6>
                 <p class="opacity-60">
-                  No one has connected yet in room: {room}
+                  No one has connected yet in room: {roomSig.value.roomId}
                 </p>
               </div>
             )}
