@@ -1,4 +1,5 @@
 import { component$ } from "@builder.io/qwik";
+import { RoomInfo } from "~/components/room-info";
 
 export default component$(()=>{
     return (
