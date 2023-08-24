@@ -6,7 +6,7 @@ import { HeroSvg } from "./hero-svg";
 export const Hero = component$(() => (
   <div class="hero bg-base-100 py-10">
     <div class="hero-content justify-between max-w-7xl w-full flex-col lg:flex-row-reverse">
-      <div class="max-w-lg w-full mb-24 lg:mb-0">
+      <div class="max-w-lg w-full mb-12 lg:mb-0">
         <HeroSvg />
       </div>
 

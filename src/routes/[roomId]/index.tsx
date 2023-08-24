@@ -6,7 +6,11 @@ import {
   useVisibleTask$,
   noSerialize,
 } from "@builder.io/qwik";
-import { routeLoader$, useNavigate } from "@builder.io/qwik-city";
+import {
+  type DocumentHead,
+  routeLoader$,
+  useNavigate,
+} from "@builder.io/qwik-city";
 import { type Socket, io } from "socket.io-client";
 import { IncommingCall } from "~/components/incomming-call";
 import { RemoteUsers } from "~/components/remote-users";
@@ -315,4 +319,8 @@ export default component$(() => {
       )}
     </div>
   );
+});
+
+export const head: DocumentHead = ({ params }) => ({
+  title: `Room | ${params.roomId}`,
 });
