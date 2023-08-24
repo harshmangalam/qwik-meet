@@ -1,8 +1,8 @@
 {
-  "name": "my-qwik-empty-starter",
-  "description": "App with Routing built-in ready to create your app",
+  "name": "qwik-meet",
+  "description": "An open source video calling web app powered by qwikcity",
   "engines": {
-    "node": ">=15.0.0"
+    "node": "v18.16.0"
   },
   "private": true,
   "scripts": {
