@@ -16,7 +16,7 @@ export const Hero = component$(() => (
         </div>
         <p class="py-6 text-lg text-center lg:text-start max-w-xl">
           An open source and free to use one-to-one private video calling web
-          app build with sveltekit. Build on top of browser webrtc peer-to-peer
+          app build with Qwikcity. Build on top of browser webrtc peer-to-peer
           communication.
         </p>
         <div class="grid grid-cols-1 sm:grid-cols-5 gap-4 mt-6 lg:mt-0">
