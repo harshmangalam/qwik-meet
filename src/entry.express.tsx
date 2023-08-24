@@ -17,6 +17,8 @@ import render from "./entry.ssr";
 import express from "express";
 import { fileURLToPath } from "node:url";
 import { join } from "node:path";
+import http from "http";
+import { Server } from "socket.io";
 
 declare global {
   interface QwikCityPlatform extends PlatformNode {}
@@ -47,6 +49,7 @@ const { router, notFound } = createQwikCity({
 // Create the express server
 // https://expressjs.com/
 const app = express();
+const server = http.createServer(app);
 
 // Enable gzip compression
 // app.use(compression());
@@ -62,8 +65,42 @@ app.use(router);
 // Use Qwik City's 404 handler
 app.use(notFound);
 
-// Start the express server
-app.listen(PORT, () => {
-  /* eslint-disable */
-  console.log(`Server started: http://localhost:${PORT}/`);
+// socket io server
+const io = new Server(server);
+io.on("connection", (socket) => {
+  socket.on("join-room", async (roomID) => {
+    socket.join(roomID);
+    const users = await io.in(roomID).allSockets();
+    socket.to(roomID).emit("user-joined", socket.id);
+    socket.emit("users", [...users]);
+  });
+
+  socket.on("offer", (payload) => {
+    io.to(payload.target).emit("offer", payload);
+  });
+
+  socket.on("answer", (payload) => {
+    io.to(payload.target).emit("answer", payload);
+  });
+
+  socket.on("ice-candidate", (incoming) => {
+    io.to(incoming.target).emit("ice-candidate", incoming.candidate);
+  });
+
+  socket.on("end-call", (data) => {
+    io.to(data.to).emit("end-call", data);
+  });
+
+  socket.on("disconnecting", () => {
+    for (const room of socket.rooms) {
+      if (room !== socket.id) {
+        socket.to(room).emit("user-left", socket.id);
+      }
+    }
+  });
+});
+
+// Start the node server
+server.listen(PORT, () => {
+  console.log(`Running on port ${PORT}`);
 });
