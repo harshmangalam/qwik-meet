@@ -1,7 +1,7 @@
 import { $, component$, useSignal } from "@builder.io/qwik";
 
 export const Themes = component$(() => {
-  const currentTheme = useSignal("corporate");
+  const currentTheme = useSignal("forest");
   const themes = [
     "cupcake",
     "bumblebee",
