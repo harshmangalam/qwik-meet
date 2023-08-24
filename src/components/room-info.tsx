@@ -2,7 +2,7 @@ import { $, component$, useSignal } from "@builder.io/qwik";
 import { useLocation } from "@builder.io/qwik-city";
 
 export const RoomInfo = component$(() => {
-  const open = useSignal(false);
+  const open = useSignal(true);
   const location = useLocation();
   const copyToClipboard = $(() => {
     navigator.clipboard.writeText(location.url.href);
@@ -10,7 +10,7 @@ export const RoomInfo = component$(() => {
   });
 
   return (
-    <div class="toast toast-top toast-start z-10">
+    <div class={["toast toast-top toast-start z-10", { hidden: !open.value }]}>
       <div class="alert shadow-lg">
         <iconify-icon width={32} height={32} icon="solar:copy-linear" />
         <div>
