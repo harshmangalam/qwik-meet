@@ -20,7 +20,7 @@ export const IncommingCall = component$((props: Props) => {
         </div>
         <div class="flex items-center gap-2">
           <button
-            onClick$={receiveCall$}
+            onClick$={rejectCall$}
             class="btn btn-error btn-circle"
             title="Decline"
           >
@@ -28,7 +28,7 @@ export const IncommingCall = component$((props: Props) => {
           </button>
           <button
             class="btn btn-primary btn-circle"
-            onClick$={rejectCall$}
+            onClick$={receiveCall$}
             title="Accept"
           >
             <iconify-icon width={24} height={24} icon="subway:call" />
