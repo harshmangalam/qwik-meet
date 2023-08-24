@@ -1,4 +1,5 @@
 import { component$ } from "@builder.io/qwik";
+import { RemoteUsers } from "~/components/remote-users";
 import { RoomInfo } from "~/components/room-info";
 
 export default component$(()=>{
@@ -6,10 +7,10 @@ export default component$(()=>{
         <div>
             <RoomInfo />
 <div class="pb-4 flex justify-end gap-2">
-  <RemoteUsersModal
-    on:calluser={(ev) => callUser(ev.detail.user)}
+  <RemoteUsers
+    callUser$={(user) => callUser(user)}
     users={connectedUsers}
-    room={data.roomId}
+    room={room}
   />
 </div>
 
