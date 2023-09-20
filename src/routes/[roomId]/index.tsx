@@ -15,7 +15,6 @@ import { type Socket, io } from "socket.io-client";
 import { IncommingCall } from "~/components/incomming-call";
 import { RemoteUsers } from "~/components/remote-users";
 import { RoomInfo } from "~/components/room-info";
-import { UserLocations } from "~/components/user-locations";
 import { Video } from "~/components/video";
 
 type Store = {
@@ -256,7 +255,6 @@ export default component$(() => {
     <div class="p-4">
       <RoomInfo />
       <div class="pb-4 flex justify-end gap-2">
-        <UserLocations />
         <RemoteUsers callUser$={callUser} users={connectedUsers} />
       </div>
 
